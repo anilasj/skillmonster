@@ -1,0 +1,105 @@
+@import url(./bootstrap.css);
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#map_canvas img { 
+	max-width: none;
+}
+#map_canvas label { 
+  width: auto; display:inline; 
+} 
+
+/* left arrow */
+
+#left-arrow {
+    width: 0;
+    height: 450px;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    z-index: 4;
+    margin-top: -225px;
+
+}
+#left-arrow.active {
+    cursor: pointer;
+}
+#left-arrow .overlay {
+    position: absolute;
+    top: 0;
+    right: 165px;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+#left-collection{
+	width:100%;
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	padding:49px 0 0 2px;
+	color:white;
+	background-color:black;
+	opacity:0.4;
+	filter:alpha(opacity=40);
+}
+#left-collection ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-family: 'NewCenturySchoolbook';
+    font-size: 1.1em;
+    opacity: 1;
+    display: block;
+}
+#left-collection ul:first-child {
+    margin-bottom: 15px;
+}
+#left-collection li {
+	padding-left:2px;
+    margin-bottom: 5px;
+}
+#left-collection li:first-child {
+    color: #000;
+    font-size: 0.75em;
+    font-style: normal;
+    font-family: 'FunctionProBook';
+    text-transform: uppercase;
+}
+#left-collection a {
+    color: #dadad2;
+    text-decoration: none;
+    transition: all 0.25s;
+    -o-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+}
+#left-collection a.active {
+    color: #fff;
+}
+
+@media print {
+  html, body {
+    height: auto;
+  }
+
+  #map_canvas {
+    height: 650px;
+  }
+}
+.btn-mini{padding: 2px 2px;}
+.hd {font-size:1.2em; line-height:2.4em; font-family:inherit; font-weight: bold;}
+.lft-tp-nav{padding:0px 10px;color:white;border-right:solid 1px gray;}
+.mddle-tp-nav{padding: 0px 15px;color:gray;}
+.rht-tp-nav{border-left:solid 1px gray;padding:0px 10px;color:white;}
+#spinner{margin-top:100px;vertical-align:middle;text-align:center;margin-left:100px;}
+.marker {font-size: 11px;}
+.marker .businessimage {float:left;}
+.marker .ratingsimage{vertical-align:middle; margin-top:0px;}
+.marker .businessinfo {margin-left: 110px;}
+	
+		

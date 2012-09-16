@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+"tiles-config_1_1.dtd">
+
+<!--
+http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd  
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+   
+         http://www.apache.org/licenses/LICENSE-2.0
+   
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+
+<tiles-definitions>
+
+
+  <!-- ========== LAYOUTS ========== -->
+  <definition name="main.mainLayout"         page="/WEB-INF/jsp/tiles/mainLayout.jsp">
+    <put      name="header"       value="/WEB-INF/jsp/tiles/header.jsp"/>
+    <put      name="footer"       value="/WEB-INF/jsp/tiles/footer.jsp"/>
+    <put      name="body"         value="body"/>
+  </definition>
+  
+  <!-- ========== PAGES ========== -->
+
+  <definition name="main.welcomePg"     extends="main.mainLayout">
+    <put      name="body"         value="/WEB-INF/jsp/home.jsp"/>
+  </definition>
+  <definition name="main.signUp"     extends="main.mainLayout">
+    <put      name="body"         value="/WEB-INF/jsp/signUp.jsp"/>
+  </definition>
+    <definition name="main.error"     extends="main.mainLayout">
+    <put      name="body"         value="/WEB-INF/jsp/mn_error.jsp"/>
+  </definition>
+  <definition name="main.forgotPwd"     extends="main.mainLayout">
+    <put      name="body"         value="/WEB-INF/jsp/forgotPwd.jsp"/>
+  </definition>
+  <definition name="main.changePwd"     extends="main.mainLayout">
+    <put      name="body"         value="/WEB-INF/jsp/changePwd.jsp"/>
+  </definition>
+  <definition name="main.signUpConfirm"     extends="main.mainLayout">
+    <put      name="body"         value="/WEB-INF/jsp/actionConfirm.jsp"/>
+  </definition>
+   <definition name="main.home"     extends="main.mainLayout">
+    <put      name="body"         value="/WEB-INF/jsp/home.jsp"/>
+  </definition>
+  <definition name="main.viewMsgs"     extends="main.mainLayout">
+    <put      name="body"         value="/WEB-INF/jsp/viewMsgs.jsp"/>
+  </definition>
+  <definition name="main.editMsg"     extends="main.mainLayout">
+    <put      name="body"         value="/WEB-INF/jsp/editMsg.jsp"/>
+  </definition>
+   <definition name="main.viewInvs"     extends="main.mainLayout">
+    <put      name="body"         value="/WEB-INF/jsp/viewInvs.jsp"/>
+  </definition>
+   <definition name="main.viewFans"     extends="main.mainLayout">
+    <put      name="body"         value="/WEB-INF/jsp/viewFans.jsp"/>
+  </definition>
+</tiles-definitions>
