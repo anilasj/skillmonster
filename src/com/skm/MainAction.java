@@ -64,7 +64,7 @@ public class MainAction extends Action{
 	
 	private String get(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		User user = (User) request.getSession().getAttribute("User");
+		
 		//get user skills
 		return getJobs(request, response);
 
@@ -79,9 +79,20 @@ public class MainAction extends Action{
 			allJobs = new Jobs();
 			allJobs.addJobs(jobs);
 			request.getSession().setAttribute("AllJobs", allJobs);
-			request.getSession().setAttribute("SkilledJobs", allJobs);
+			
 		}
+		
+		User user = (User) request.getSession().getAttribute("User");
+		
 		//if you get skilled jobs - recalculate and set skilledJobs
+		List<SkillJob> skillJobs = new ArrayList();
+		if (!allJobs.isEmpty()){
+			
+			//get User Selected Skills
+			
+			skillJobs = allJobs.getJobs(user.getSkills());
+		}
+		request.getSession().setAttribute("SkilledJobs", skillJobs);
 		return "home";
 		
 			

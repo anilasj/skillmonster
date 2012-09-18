@@ -24,7 +24,6 @@ public class Jobs {
 				sjob.calculateSkillPercent(skills);
 				sjobs.add(sjob);
 			}
-			
 			Collections.sort(sjobs, new MatchComparator());
 		}
 		return sjobs;

@@ -46,7 +46,8 @@
    </head>
   <body>
   <% com.skm.User user = (com.skm.User) request.getSession().getAttribute("User");
-  
+     java.util.List<com.skm.Skill> skills = user.getSkills();
+	 java.util.List<com.skm.SkillJob> skillJobs = (java.util.List<com.skm.SkillJob>) request.getSession().getAttribute("SkilledJobs");
 %>
    <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -69,12 +70,49 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span12" >
-          <div class="hero-unit">
-          	<h2>This is the shizzle....</h2>
-          	<p></p>
+        <div class="span2" >
+          <div class="thumbnail well" style=" height:300px;">
+          <form action="main.do" id="skform">
+          <div style="padding:5px 15px;"><h4>My Skills</h4></div>
+          <% if (!skills.isEmpty()){%>          
+          <ul class="nav nav-list" style="margin-top:10px;">
+          	<% for (com.skm.Skill skill: skills){%>
+          	<li><label class="checkbox">
+  					<input type="checkbox" value="<%=skill.getName()%>" name="skillSel" CHECKED>
+					<%= skill.getName()%>
+				 </label>
+			</li>
+			<%}%>
+			</ul>
+         <p style="padding-top:5px;"> </p>
+		  <div style="margin-left:10px;"><a class="btn btn-warning span11" href="javascript:document.skform.submit();">Apply Skills</a>	
+         </div>
+          <%}%>
+          </form>
           </div>
         </div><!--/span-->
+        <div class="span10">
+        	<h2>Jobs that match your skills</h2>
+        	<table class="table cleartop" width="100%">
+        	<tbody id="msg-list">
+        	<% if (skillJobs.isEmpty()){%>
+        	<tr><td colspan=2><center>No jobs found today.</center>
+        	</td></tr>
+        	<%}else {
+			 for (com.skm.SkillJob job: skillJobs){
+					String progressStyle="width:" + job.getMatchPercent() + "%;";
+				%>
+        		<tr><td width="50px"><img src="<%=job.getJob().getCreatorThumbnail()%>" title="<%=job.getJob().getCreatorName()%>"></td>
+        		<td><a href="<%=job.getJob().getUrl()%>" target="blank"><%=job.getJob().getTitle()%></a>
+        		<div class="progress">
+  					<div class="bar" style="<%=progressStyle%>"></div>
+				</div>
+        		<p><%=job.getJob().getDesc()%></p>
+        		<div><a href="<%=job.getJob().getUrl()%>" target="blank" class="btn btn-inverse">Apply For Job</a></div>
+        		</td></tr>
+        	<%}}%>
+		 	</tbody></table>
+        </div>
       </div><!--/row-->
 
       <hr>
