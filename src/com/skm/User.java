@@ -46,5 +46,13 @@ public class User {
 		this.skills = skills;
 	}
 	
-	
+	public boolean doesSkillExist(Skill skill, List<Skill> sskills){
+		if (sskills == null || sskills.isEmpty())
+			sskills = skills;
+		for (Skill sskill: sskills){
+			if (sskill.getName().equalsIgnoreCase(skill.getName()))
+				return true;
+		}
+		return false;
+	}
 }

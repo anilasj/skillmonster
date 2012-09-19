@@ -49,9 +49,7 @@
 function onLinkedInAuth() {
 	alert("on linkedin auth");
   IN.API.Profile("me").fields("id","first-name","last-name","skills")
-    .result( function(me) {
-    	alert("here iwht results");
-	alert("me=" + JSON.stringify(me.values[0]))   ; 	
+    .result( function(me) {	
       var id = me.values[0].id;
       // AJAX call to pass back id to your server
       $.post("acct.do", {ac:"signUp", lid: id, fname: me.values[0].firstName, lname: me.values[0].lastName, skills: me.values[0].skills}, function(data){

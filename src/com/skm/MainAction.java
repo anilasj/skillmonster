@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 import javax.xml.bind.DatatypeConverter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -59,15 +60,24 @@ public class MainAction extends Action{
 			return get(request, response);
 		else if ("jobs".equals(action))
 			return getJobs(request, response);
+		else if ("add".equals(action))
+			return addSkills(request, response);
 		return null;
 	}
 	
 	private String get(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		
 		//get user skills
 		return getJobs(request, response);
 
+	}
+	
+	private String addSkills(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String skillName = request.getParameter("addSkill1Inp");
+		if (!StringUtils.isBlank(skillName)){
+			User user = (User) request.getSession().getAttribute("User");
+			user.getSkills().add(new Skill(skillName));
+		}
+		return getJobs(request, response);
 	}
 	
 	private String getJobs(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -88,9 +98,18 @@ public class MainAction extends Action{
 		List<SkillJob> skillJobs = new ArrayList();
 		if (!allJobs.isEmpty()){
 			
+			List<Skill> uSkills = new ArrayList<Skill>();
 			//get User Selected Skills
-			
-			skillJobs = allJobs.getJobs(user.getSkills());
+			String[] skillSrchArry = request.getParameterValues("skillSel");
+			if (skillSrchArry != null){
+				for (int i=0; i < skillSrchArry.length; i++)
+					uSkills.add(new Skill(skillSrchArry[i]));
+				
+				request.setAttribute("selSkills", uSkills);
+			}else{
+				uSkills = user.getSkills();
+			}
+			skillJobs = allJobs.getJobs(uSkills);
 		}
 		request.getSession().setAttribute("SkilledJobs", skillJobs);
 		return "home";
